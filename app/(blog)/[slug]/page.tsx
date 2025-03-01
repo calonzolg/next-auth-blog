@@ -3,9 +3,9 @@ import { createClient } from "@/utils/supabase/server";
 export default async function SlugPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const slug = params.slug;
+  const slug = (await params).slug;
   const supabase = await createClient();
 
   const { data, error } = await supabase
